@@ -363,7 +363,7 @@
     position: relative; overflow: hidden;
   }
   .hero-banner::before {
-    content: '🌤️';
+    content: 'ðŸŒ¤ï¸';
     position: absolute; right: 20px; top: 16px;
     font-size: 3.5rem; opacity: 0.3;
   }
@@ -448,7 +448,7 @@
 <div id="page-auth" class="page active">
   <div class="auth-card">
     <div class="auth-logo">
-      <span class="logo-icon">🛝</span>
+      <span class="logo-icon">ðŸ›</span>
       <h1>Speelplanner</h1>
       <p>Speelafspraken makkelijk gemaakt</p>
     </div>
@@ -465,7 +465,7 @@
       </div>
       <div class="form-group">
         <label>Wachtwoord</label>
-        <input type="password" id="login-password" placeholder="••••••••">
+        <input type="password" id="login-password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢">
       </div>
       <button class="btn btn-primary mt-16" onclick="handleLogin()" id="btn-login">
         Inloggen
@@ -498,7 +498,7 @@
 
   <!-- Top nav -->
   <nav class="topnav">
-    <div class="logo"><span>🛝</span> Speelplanner</div>
+    <div class="logo"><span>ðŸ›</span> Speelplanner</div>
     <div class="nav-actions">
       <div class="avatar" id="user-avatar" onclick="showProfile()">?</div>
     </div>
@@ -508,25 +508,25 @@
   <div id="page-home" class="page active" style="display:flex">
     <div class="content">
       <div id="hero-section" class="hero-banner">
-        <h2>Hallo! 👋</h2>
+        <h2>Hallo! ðŸ‘‹</h2>
         <p>Bekijk je groepen en plan een speelafspraak</p>
       </div>
       <div class="section-header">
         <div class="section-title">Mijn groepen</div>
         <button class="btn btn-sm btn-outline" onclick="openModal('modal-join')">+ Joinen</button>
       </div>
-      <div id="groups-list"><div class="loading-state">⏳</div></div>
+      <div id="groups-list"><div class="loading-state">â³</div></div>
       <div class="grid-2 mt-16">
-        <button class="btn btn-green" onclick="goTo('page-create-group')">➕ Groep aanmaken</button>
-        <button class="btn btn-sky btn-outline" onclick="openModal('modal-join')">🔗 Code invoeren</button>
+        <button class="btn btn-green" onclick="goTo('page-create-group')">âž• Groep aanmaken</button>
+        <button class="btn btn-sky btn-outline" onclick="openModal('modal-join')">ðŸ”— Code invoeren</button>
       </div>
     </div>
   </div>
 
   <div id="page-group-detail" class="page" style="display:none">
     <div class="content">
-      <button class="btn btn-outline btn-sm mb-16" onclick="goTo('page-home')" style="margin-bottom:14px">← Terug</button>
-      <div id="group-detail-content"><div class="loading-state">⏳</div></div>
+      <button class="btn btn-outline btn-sm mb-16" onclick="goTo('page-home')" style="margin-bottom:14px">â† Terug</button>
+      <div id="group-detail-content"><div class="loading-state">â³</div></div>
     </div>
   </div>
 
@@ -537,7 +537,7 @@
         <button class="btn btn-sm btn-sun" onclick="openModal('modal-new-request')">+ Nieuw</button>
       </div>
       <div id="group-filter" style="margin-bottom:14px;display:flex;gap:8px;overflow-x:auto;padding-bottom:4px"></div>
-      <div id="requests-list"><div class="loading-state">⏳</div></div>
+      <div id="requests-list"><div class="loading-state">â³</div></div>
     </div>
   </div>
 
@@ -547,14 +547,14 @@
         <div class="section-title">Mijn kinderen</div>
         <button class="btn btn-sm btn-sun" onclick="openModal('modal-add-child')">+ Toevoegen</button>
       </div>
-      <div id="children-list"><div class="loading-state">⏳</div></div>
+      <div id="children-list"><div class="loading-state">â³</div></div>
     </div>
   </div>
 
   <div id="page-create-group" class="page" style="display:none">
     <div class="content">
-      <button class="btn btn-outline btn-sm" onclick="goTo('page-home')" style="margin-bottom:20px">← Terug</button>
-      <div class="section-title" style="margin-bottom:20px">📋 Groep aanmaken</div>
+      <button class="btn btn-outline btn-sm" onclick="goTo('page-home')" style="margin-bottom:20px">â† Terug</button>
+      <div class="section-title" style="margin-bottom:20px">ðŸ“‹ Groep aanmaken</div>
       <div class="card">
         <div class="form-group">
           <label>Groepsnaam</label>
@@ -572,16 +572,16 @@
   <!-- Bottom nav -->
   <nav class="bottomnav">
     <button class="nav-item active" id="nav-home" onclick="goTo('page-home')">
-      <span class="nav-icon">🏠</span>
+      <span class="nav-icon">ðŸ </span>
       <span>Home</span>
       <div class="nav-dot"></div>
     </button>
     <button class="nav-item" id="nav-requests" onclick="goTo('page-requests')">
-      <span class="nav-icon">📅</span>
+      <span class="nav-icon">ðŸ“…</span>
       <span>Oproepen</span>
     </button>
     <button class="nav-item" id="nav-children" onclick="goTo('page-children')">
-      <span class="nav-icon">👧</span>
+      <span class="nav-icon">ðŸ‘§</span>
       <span>Kinderen</span>
     </button>
   </nav>
@@ -593,7 +593,7 @@
 <div id="modal-join" class="modal-overlay">
   <div class="modal">
     <div class="modal-handle"></div>
-    <div class="modal-title">🔗 Groep joinen</div>
+    <div class="modal-title">ðŸ”— Groep joinen</div>
     <div class="form-group">
       <label>Uitnodigingscode</label>
       <input type="text" id="join-code" placeholder="Bijv. ABC123" maxlength="8" style="text-transform:uppercase;letter-spacing:3px;font-size:1.2rem;font-weight:800;text-align:center">
@@ -609,7 +609,7 @@
 <div id="modal-add-child" class="modal-overlay">
   <div class="modal">
     <div class="modal-handle"></div>
-    <div class="modal-title">👧 Kind toevoegen</div>
+    <div class="modal-title">ðŸ‘§ Kind toevoegen</div>
     <div class="form-group">
       <label>Naam van het kind</label>
       <input type="text" id="child-name" placeholder="Bijv. Emma">
@@ -629,7 +629,7 @@
 <div id="modal-new-request" class="modal-overlay">
   <div class="modal">
     <div class="modal-handle"></div>
-    <div class="modal-title">📅 Oproep plaatsen</div>
+    <div class="modal-title">ðŸ“… Oproep plaatsen</div>
     <div class="form-group">
       <label>Groep</label>
       <select id="req-group-id"></select>
@@ -654,7 +654,7 @@
     </div>
     <div class="grid-2 mt-16">
       <button class="btn btn-outline" onclick="closeModal('modal-new-request')">Annuleren</button>
-      <button class="btn btn-coral" onclick="createRequest()">Plaatsen! 🎉</button>
+      <button class="btn btn-coral" onclick="createRequest()">Plaatsen! ðŸŽ‰</button>
     </div>
   </div>
 </div>
@@ -663,14 +663,14 @@
 <div id="modal-response" class="modal-overlay">
   <div class="modal">
     <div class="modal-handle"></div>
-    <div class="modal-title">💬 Reageren</div>
+    <div class="modal-title">ðŸ’¬ Reageren</div>
     <div id="response-request-info" style="margin-bottom:16px"></div>
     <div class="form-group">
       <label>Jouw reactie</label>
       <select id="response-status">
-        <option value="yes">✅ Ja, wij kunnen!</option>
-        <option value="maybe">🤔 Misschien</option>
-        <option value="no">❌ Helaas niet</option>
+        <option value="yes">âœ… Ja, wij kunnen!</option>
+        <option value="maybe">ðŸ¤” Misschien</option>
+        <option value="no">âŒ Helaas niet</option>
       </select>
     </div>
     <div class="form-group">
@@ -689,11 +689,11 @@
 <div id="modal-profile" class="modal-overlay">
   <div class="modal">
     <div class="modal-handle"></div>
-    <div class="modal-title">👤 Mijn profiel</div>
+    <div class="modal-title">ðŸ‘¤ Mijn profiel</div>
     <div id="profile-info" style="margin-bottom:20px"></div>
     <div class="divider"></div>
     <button class="btn btn-outline btn-full" onclick="handleLogout()" style="margin-top:12px">
-      🚪 Uitloggen
+      ðŸšª Uitloggen
     </button>
     <button class="btn btn-outline btn-full" onclick="closeModal('modal-profile')" style="margin-top:8px">
       Sluiten
@@ -707,8 +707,8 @@
 <script>
 // ======================================
 // SUPABASE CONFIG
-// ⚠️  VERVANG DEZE WAARDEN MET JE EIGEN SUPABASE GEGEVENS
-// Ga naar: https://app.supabase.com → Settings → API
+// âš ï¸  VERVANG DEZE WAARDEN MET JE EIGEN SUPABASE GEGEVENS
+// Ga naar: https://app.supabase.com â†’ Settings â†’ API
 // ======================================
 const SUPABASE_URL = 'https://cxpngxpjuenasrbtksls.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN4cG5neHBqdWVuYXNyYnRrc2xzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MTYxMTksImV4cCI6MjA5MDE5MjExOX0.tgqNtW5_Qg0Bhg258Sg0xVand5wzV969njlTZ7eQRcQ';
@@ -751,19 +751,17 @@ async function afterLogin(user) {
 }
 
 async function ensureProfile(user) {
-  const { data } = await sb.from('users').select('*').eq('id', user.id).single();
-  if (!data) {
-    const name = user.user_metadata?.full_name || user.email.split('@')[0];
-    await sb.from('users').insert({ id: user.id, email: user.email, full_name: name });
-    userProfile = { id: user.id, email: user.email, full_name: name };
-  } else {
-    userProfile = data;
-  }
+  const name = user.user_metadata?.full_name || user.email.split('@')[0];
+  const { data } = await sb.from('users').upsert(
+    { id: user.id, email: user.email, full_name: name },
+    { onConflict: 'id' }
+  ).select().single();
+  userProfile = data || { id: user.id, email: user.email, full_name: name };
   // Set avatar
   const initials = (userProfile.full_name || 'U').split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
   document.getElementById('user-avatar').textContent = initials;
   document.getElementById('hero-section').querySelector('h2').textContent = 
-    `Hallo, ${(userProfile.full_name || '').split(' ')[0]}! 👋`;
+    `Hallo, ${(userProfile.full_name || '').split(' ')[0]}! ðŸ‘‹`;
 }
 
 // ======================================
@@ -787,7 +785,7 @@ async function handleLogin() {
   const { error } = await sb.auth.signInWithPassword({ email, password });
   btn.innerHTML = 'Inloggen';
   btn.disabled = false;
-  if (error) showToast('❌ ' + (error.message.includes('Invalid') ? 'Verkeerd e-mail of wachtwoord' : error.message));
+  if (error) showToast('âŒ ' + (error.message.includes('Invalid') ? 'Verkeerd e-mail of wachtwoord' : error.message));
 }
 
 async function handleRegister() {
@@ -802,9 +800,9 @@ async function handleRegister() {
   const { data, error } = await sb.auth.signUp({ email, password, options: { data: { full_name: name } } });
   btn.innerHTML = 'Account aanmaken';
   btn.disabled = false;
-  if (error) { showToast('❌ ' + error.message); return; }
+  if (error) { showToast('âŒ ' + error.message); return; }
   if (data.user && !data.session) {
-    showToast('✉️ Check je e-mail om te bevestigen!');
+    showToast('âœ‰ï¸ Check je e-mail om te bevestigen!');
   }
 }
 
@@ -818,20 +816,20 @@ async function handleLogout() {
 // ======================================
 async function loadHome() {
   const el = document.getElementById('groups-list');
-  el.innerHTML = '<div class="loading-state">⏳</div>';
+  el.innerHTML = '<div class="loading-state">â³</div>';
   
   const { data, error } = await sb
     .from('group_members')
     .select('role, groups(id, name, description, invite_code, created_by)')
     .eq('user_id', currentUser.id);
 
-  if (error || !data) { el.innerHTML = '<div class="empty-state"><div class="empty-icon">😕</div><p>Kon groepen niet laden</p></div>'; return; }
+  if (error || !data) { el.innerHTML = '<div class="empty-state"><div class="empty-icon">ðŸ˜•</div><p>Kon groepen niet laden</p></div>'; return; }
   
   myGroups = data.map(d => ({ ...d.groups, role: d.role })).filter(Boolean);
   
   if (myGroups.length === 0) {
     el.innerHTML = `<div class="empty-state">
-      <div class="empty-icon">🏫</div>
+      <div class="empty-icon">ðŸ«</div>
       <p>Je bent nog geen lid van een groep</p>
     </div>`;
     return;
@@ -840,14 +838,14 @@ async function loadHome() {
   el.innerHTML = myGroups.map(g => `
     <div class="card" onclick="openGroupDetail('${g.id}')">
       <div class="card-header">
-        <div class="card-icon sky">🏫</div>
+        <div class="card-icon sky">ðŸ«</div>
         <div>
           <div class="card-title">${escHtml(g.name)}</div>
           <div class="card-sub">${escHtml(g.description || 'Geen omschrijving')}</div>
         </div>
       </div>
       <div class="card-meta">
-        <span class="chip sky">👤 ${g.role === 'admin' ? 'Beheerder' : 'Lid'}</span>
+        <span class="chip sky">ðŸ‘¤ ${g.role === 'admin' ? 'Beheerder' : 'Lid'}</span>
       </div>
     </div>
   `).join('');
@@ -856,7 +854,7 @@ async function loadHome() {
 async function openGroupDetail(groupId) {
   goTo('page-group-detail');
   const el = document.getElementById('group-detail-content');
-  el.innerHTML = '<div class="loading-state">⏳</div>';
+  el.innerHTML = '<div class="loading-state">â³</div>';
   
   const { data: group } = await sb.from('groups').select('*').eq('id', groupId).single();
   const { data: members } = await sb.from('group_members')
@@ -869,16 +867,16 @@ async function openGroupDetail(groupId) {
   
   el.innerHTML = `
     <div class="hero-banner" style="background: linear-gradient(135deg, var(--grass), var(--sky))">
-      <h2>🏫 ${escHtml(group.name)}</h2>
+      <h2>ðŸ« ${escHtml(group.name)}</h2>
       <p>${escHtml(group.description || '')}</p>
     </div>
     
     ${isAdmin ? `
     <div class="card">
-      <div class="card-title" style="margin-bottom:10px">📨 Uitnodigingscode</div>
+      <div class="card-title" style="margin-bottom:10px">ðŸ“¨ Uitnodigingscode</div>
       <div class="invite-box">
         <div class="invite-code">${group.invite_code}</div>
-        <button class="btn btn-sm btn-sky" onclick="copyCode('${group.invite_code}')">Kopiëren</button>
+        <button class="btn btn-sm btn-sky" onclick="copyCode('${group.invite_code}')">KopiÃ«ren</button>
       </div>
       <p class="text-muted mt-8">Deel deze code met andere ouders</p>
     </div>` : ''}
@@ -888,10 +886,10 @@ async function openGroupDetail(groupId) {
     </div>
     ${(members || []).map(m => `
       <div class="child-card">
-        <div class="child-avatar">👤</div>
+        <div class="child-avatar">ðŸ‘¤</div>
         <div>
           <div style="font-weight:800">${escHtml(m.users?.full_name || 'Onbekend')}</div>
-          <div class="text-muted">${m.role === 'admin' ? '⭐ Beheerder' : 'Lid'}</div>
+          <div class="text-muted">${m.role === 'admin' ? 'â­ Beheerder' : 'Lid'}</div>
         </div>
       </div>
     `).join('')}
@@ -912,11 +910,11 @@ async function createGroup() {
     name, description: desc, invite_code: code, created_by: currentUser.id
   }).select().single();
   
-  if (error || !data) { showToast('❌ ' + (error?.message || 'Fout')); return; }
+  if (error || !data) { showToast('âŒ ' + (error?.message || 'Fout')); return; }
   
   await sb.from('group_members').insert({ group_id: data.id, user_id: currentUser.id, role: 'admin' });
   
-  showToast('✅ Groep aangemaakt!');
+  showToast('âœ… Groep aangemaakt!');
   document.getElementById('group-name').value = '';
   document.getElementById('group-desc').value = '';
   goTo('page-home');
@@ -928,7 +926,7 @@ async function joinGroup() {
   if (!code) { showToast('Voer een code in'); return; }
   
   const { data: group } = await sb.from('groups').select('*').eq('invite_code', code).single();
-  if (!group) { showToast('❌ Ongeldige code'); return; }
+  if (!group) { showToast('âŒ Ongeldige code'); return; }
   
   const { data: existing } = await sb.from('group_members')
     .select('id').eq('group_id', group.id).eq('user_id', currentUser.id).single();
@@ -936,9 +934,9 @@ async function joinGroup() {
   if (existing) { showToast('Je bent al lid van deze groep'); closeModal('modal-join'); return; }
   
   const { error } = await sb.from('group_members').insert({ group_id: group.id, user_id: currentUser.id, role: 'member' });
-  if (error) { showToast('❌ ' + error.message); return; }
+  if (error) { showToast('âŒ ' + error.message); return; }
   
-  showToast(`✅ Welkom bij ${group.name}!`);
+  showToast(`âœ… Welkom bij ${group.name}!`);
   document.getElementById('join-code').value = '';
   closeModal('modal-join');
   loadHome();
@@ -957,13 +955,13 @@ async function leaveGroup(groupId) {
 // ======================================
 async function loadChildren() {
   const el = document.getElementById('children-list');
-  el.innerHTML = '<div class="loading-state">⏳</div>';
+  el.innerHTML = '<div class="loading-state">â³</div>';
   
   const { data } = await sb.from('children').select('*').eq('user_id', currentUser.id);
   
   if (!data || data.length === 0) {
     el.innerHTML = `<div class="empty-state">
-      <div class="empty-icon">👶</div>
+      <div class="empty-icon">ðŸ‘¶</div>
       <p>Nog geen kinderen toegevoegd</p>
       <button class="btn btn-sun" onclick="openModal('modal-add-child')">+ Kind toevoegen</button>
     </div>`;
@@ -973,12 +971,12 @@ async function loadChildren() {
   el.innerHTML = data.map(c => {
     const age = c.date_of_birth ? Math.floor((new Date() - new Date(c.date_of_birth)) / 31557600000) : null;
     return `<div class="child-card">
-      <div class="child-avatar">🧒</div>
+      <div class="child-avatar">ðŸ§’</div>
       <div style="flex:1">
         <div style="font-weight:800;font-size:1rem">${escHtml(c.name)}</div>
         ${age !== null ? `<div class="text-muted">${age} jaar</div>` : ''}
       </div>
-      <button class="btn btn-sm btn-outline" onclick="deleteChild('${c.id}')">🗑️</button>
+      <button class="btn btn-sm btn-outline" onclick="deleteChild('${c.id}')">ðŸ—‘ï¸</button>
     </div>`;
   }).join('');
 }
@@ -989,9 +987,9 @@ async function addChild() {
   if (!name) { showToast('Vul een naam in'); return; }
   
   const { error } = await sb.from('children').insert({ name, date_of_birth: dob || null, user_id: currentUser.id });
-  if (error) { showToast('❌ ' + error.message); return; }
+  if (error) { showToast('âŒ ' + error.message); return; }
   
-  showToast('✅ Kind toegevoegd!');
+  showToast('âœ… Kind toegevoegd!');
   document.getElementById('child-name').value = '';
   document.getElementById('child-dob').value = '';
   closeModal('modal-add-child');
@@ -1009,7 +1007,7 @@ async function deleteChild(id) {
 // ======================================
 async function loadRequests() {
   const el = document.getElementById('requests-list');
-  el.innerHTML = '<div class="loading-state">⏳</div>';
+  el.innerHTML = '<div class="loading-state">â³</div>';
   
   // Load group filter buttons
   const filterEl = document.getElementById('group-filter');
@@ -1019,7 +1017,7 @@ async function loadRequests() {
   });
   
   if (myGroups.length === 0) {
-    el.innerHTML = `<div class="empty-state"><div class="empty-icon">📅</div><p>Word eerst lid van een groep om oproepen te zien</p></div>`;
+    el.innerHTML = `<div class="empty-state"><div class="empty-icon">ðŸ“…</div><p>Word eerst lid van een groep om oproepen te zien</p></div>`;
     return;
   }
   
@@ -1040,7 +1038,7 @@ async function loadRequests() {
   
   if (!requests || requests.length === 0) {
     el.innerHTML = `<div class="empty-state">
-      <div class="empty-icon">🌤️</div>
+      <div class="empty-icon">ðŸŒ¤ï¸</div>
       <p>Nog geen oproepen. Wees de eerste!</p>
       <button class="btn btn-coral" onclick="openNewRequestModal()">+ Oproep plaatsen</button>
     </div>`;
@@ -1063,23 +1061,23 @@ async function loadRequests() {
     
     return `<div class="card">
       <div class="card-header">
-        <div class="card-icon ${isOwn ? 'sun' : 'sky'}">${isOwn ? '⭐' : '🧒'}</div>
+        <div class="card-icon ${isOwn ? 'sun' : 'sky'}">${isOwn ? 'â­' : 'ðŸ§’'}</div>
         <div style="flex:1">
           <div class="card-title">${escHtml(req.users?.full_name || 'Onbekend')}</div>
           <div class="card-sub">${dateStr}</div>
         </div>
-        <span class="status-badge status-${req.status || 'open'}">${req.status === 'matched' ? '🔵 Match!' : '🟢 Open'}</span>
+        <span class="status-badge status-${req.status || 'open'}">${req.status === 'matched' ? 'ðŸ”µ Match!' : 'ðŸŸ¢ Open'}</span>
       </div>
       <div class="card-meta">
-        ${req.time_from ? `<span class="chip sky">⏰ ${req.time_from.slice(0,5)}${req.time_to ? ' – ' + req.time_to.slice(0,5) : ''}</span>` : ''}
-        ${req.location_pref ? `<span class="chip grass">📍 ${escHtml(req.location_pref)}</span>` : ''}
-        ${yesCount > 0 ? `<span class="chip sun">✅ ${yesCount} interesse</span>` : ''}
+        ${req.time_from ? `<span class="chip sky">â° ${req.time_from.slice(0,5)}${req.time_to ? ' â€“ ' + req.time_to.slice(0,5) : ''}</span>` : ''}
+        ${req.location_pref ? `<span class="chip grass">ðŸ“ ${escHtml(req.location_pref)}</span>` : ''}
+        ${yesCount > 0 ? `<span class="chip sun">âœ… ${yesCount} interesse</span>` : ''}
       </div>
       ${responses.length > 0 ? `
         <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
           ${responses.slice(0,3).map(r => `
             <div class="text-muted" style="font-size:0.82rem;margin-bottom:3px">
-              ${r.status === 'yes' ? '✅' : r.status === 'maybe' ? '🤔' : '❌'} 
+              ${r.status === 'yes' ? 'âœ…' : r.status === 'maybe' ? 'ðŸ¤”' : 'âŒ'} 
               <strong>${escHtml(r.users?.full_name || '')}</strong>
               ${r.message ? ': ' + escHtml(r.message) : ''}
             </div>
@@ -1089,7 +1087,7 @@ async function loadRequests() {
         ${!isOwn ? `
           <button class="btn btn-sm ${myResponse ? 'btn-outline' : 'btn-grass'} btn-full" 
             onclick="openResponseModal('${req.id}', '${escHtml(req.users?.full_name || '')}', '${dateStr}')">
-            ${myResponse ? (myResponse.status === 'yes' ? '✅ Jij kunt!' : myResponse.status === 'maybe' ? '🤔 Misschien' : '❌ Niet') : '💬 Reageren'}
+            ${myResponse ? (myResponse.status === 'yes' ? 'âœ… Jij kunt!' : myResponse.status === 'maybe' ? 'ðŸ¤” Misschien' : 'âŒ Niet') : 'ðŸ’¬ Reageren'}
           </button>` : `
           <button class="btn btn-sm btn-outline btn-full" onclick="closeRequest('${req.id}')">Sluiten</button>`}
       </div>
@@ -1125,9 +1123,9 @@ async function createRequest() {
     status: 'open'
   });
   
-  if (error) { showToast('❌ ' + error.message); return; }
+  if (error) { showToast('âŒ ' + error.message); return; }
   
-  showToast('🎉 Oproep geplaatst!');
+  showToast('ðŸŽ‰ Oproep geplaatst!');
   closeModal('modal-new-request');
   loadRequests();
 }
@@ -1137,7 +1135,7 @@ function openResponseModal(requestId, requesterName, dateStr) {
   document.getElementById('response-request-info').innerHTML = `
     <div class="card" style="margin:0;background:var(--border)">
       <strong>${escHtml(requesterName)}</strong> zoekt een speelafspraak<br>
-      <span class="text-muted">📅 ${dateStr}</span>
+      <span class="text-muted">ðŸ“… ${dateStr}</span>
     </div>`;
   openModal('modal-response');
 }
@@ -1155,9 +1153,9 @@ async function submitResponse() {
     message: message || null
   }, { onConflict: 'request_id,user_id' });
   
-  if (error) { showToast('❌ ' + error.message); return; }
+  if (error) { showToast('âŒ ' + error.message); return; }
   
-  showToast('✅ Reactie verstuurd!');
+  showToast('âœ… Reactie verstuurd!');
   document.getElementById('response-message').value = '';
   closeModal('modal-response');
   loadRequests();
@@ -1272,7 +1270,7 @@ function showToast(msg) {
 }
 
 function copyCode(code) {
-  navigator.clipboard.writeText(code).then(() => showToast('📋 Code gekopieerd!'));
+  navigator.clipboard.writeText(code).then(() => showToast('ðŸ“‹ Code gekopieerd!'));
 }
 
 function generateCode() {
