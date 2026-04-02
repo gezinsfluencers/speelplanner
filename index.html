@@ -666,16 +666,8 @@
     <div class="modal-title">💬 Reageren</div>
     <div id="response-request-info" style="margin-bottom:16px"></div>
     <div class="form-group">
-      <label>Jouw reactie</label>
-      <select id="response-status">
-        <option value="yes">✅ Ja, wij kunnen!</option>
-        <option value="maybe">🤔 Misschien</option>
-        <option value="no">❌ Helaas niet</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>Berichtje (optioneel)</label>
-      <textarea id="response-message" placeholder="Bijv. Welk kind neemt Emma mee?"></textarea>
+      <label>Locatie voorkeur (optioneel)</label>
+      <input type="text" id="response-message" placeholder="Bijv. bij ons thuis">
     </div>
     <input type="hidden" id="response-request-id">
     <div class="grid-2 mt-16">
@@ -961,7 +953,7 @@ async function loadChildren() {
   const el = document.getElementById('children-list');
   el.innerHTML = '<div class="loading-state">⏳</div>';
   
-  const { data } = await sb.from('children').select('*').eq('user_id', currentUser.id);
+  const { data } = await sb.from('children').select('*').eq('parent_id', currentUser.id);
   
   if (!data || data.length === 0) {
     el.innerHTML = `<div class="empty-state">
@@ -973,12 +965,10 @@ async function loadChildren() {
   }
   
   el.innerHTML = data.map(c => {
-    const age = c.date_of_birth ? Math.floor((new Date() - new Date(c.date_of_birth)) / 31557600000) : null;
     return `<div class="child-card">
       <div class="child-avatar">🧒</div>
       <div style="flex:1">
-        <div style="font-weight:800;font-size:1rem">${escHtml(c.name)}</div>
-        ${age !== null ? `<div class="text-muted">${age} jaar</div>` : ''}
+        <div style="font-weight:800;font-size:1rem">${escHtml(c.first_name)}</div>
       </div>
       <button class="btn btn-sm btn-outline" onclick="deleteChild('${c.id}')">🗑️</button>
     </div>`;
@@ -987,10 +977,10 @@ async function loadChildren() {
 
 async function addChild() {
   const name = document.getElementById('child-name').value.trim();
-  const dob = document.getElementById('child-dob').value;
+  const dob = null;
   if (!name) { showToast('Vul een naam in'); return; }
   
-  const { error } = await sb.from('children').insert({ name, date_of_birth: dob || null, user_id: currentUser.id });
+  const { error } = await sb.from('children').insert({ first_name: name, parent_id: currentUser.id });
   if (error) { showToast('❌ ' + error.message); return; }
   
   showToast('✅ Kind toegevoegd!');
@@ -1002,7 +992,7 @@ async function addChild() {
 
 async function deleteChild(id) {
   if (!confirm('Kind verwijderen?')) return;
-  await sb.from('children').delete().eq('id', id);
+  await sb.from('children').delete().eq('id', id).eq('parent_id', currentUser.id);
   loadChildren();
 }
 
@@ -1035,7 +1025,7 @@ async function loadRequests() {
   
   const { data: requests } = await sb
     .from('play_requests')
-    .select('*, users(full_name)')
+    .select('*, users!requester_id(first_name, last_name)')
     .in('requester_id', userIds)
     .neq('status', 'closed')
     .order('date', { ascending: true });
@@ -1052,13 +1042,13 @@ async function loadRequests() {
   // Load responses for each request
   const { data: allResponses } = await sb
     .from('responses')
-    .select('request_id, status, user_id, message, users(full_name)')
+    .select('request_id, responder_id, location_pref, users!responder_id(first_name, last_name)')
     .in('request_id', requests.map(r => r.id));
   
   el.innerHTML = requests.map(req => {
     const responses = (allResponses || []).filter(r => r.request_id === req.id);
-    const myResponse = responses.find(r => r.user_id === currentUser.id);
-    const yesCount = responses.filter(r => r.status === 'yes').length;
+    const myResponse = responses.find(r => r.responder_id === currentUser.id);
+    const yesCount = responses.filter(r => r.location_pref !== null).length;
     const isOwn = req.requester_id === currentUser.id;
     
     const dateStr = new Date(req.date).toLocaleDateString('nl-NL', { weekday: 'long', day: 'numeric', month: 'long' });
@@ -1067,7 +1057,7 @@ async function loadRequests() {
       <div class="card-header">
         <div class="card-icon ${isOwn ? 'sun' : 'sky'}">${isOwn ? '⭐' : '🧒'}</div>
         <div style="flex:1">
-          <div class="card-title">${escHtml((req.users?.first_name || '') + ' ' + (req.users?.last_name || '') || 'Onbekend')}</div>
+          <div class="card-title">${escHtml((req.users?.first_name || 'Onbekend') + ' ' + (req.users?.last_name || ''))}</div>
           <div class="card-sub">${dateStr}</div>
         </div>
         <span class="status-badge status-${req.status || 'open'}">${req.status === 'matched' ? '🔵 Match!' : '🟢 Open'}</span>
@@ -1081,8 +1071,8 @@ async function loadRequests() {
         <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border)">
           ${responses.slice(0,3).map(r => `
             <div class="text-muted" style="font-size:0.82rem;margin-bottom:3px">
-              ${r.status === 'yes' ? '✅' : r.status === 'maybe' ? '🤔' : '❌'} 
-              <strong>${escHtml((r.users?.first_name || '') + ' ' + (r.users?.last_name || ''))}</strong>
+              ${r.location_pref !== null ? '✅' : false ? '🤔' : '❌'} 
+              <strong>${escHtml((r.users?.first_name || 'Iemand'))}</strong>
               ${r.message ? ': ' + escHtml(r.message) : ''}
             </div>
           `).join('')}
@@ -1091,7 +1081,7 @@ async function loadRequests() {
         ${!isOwn ? `
           <button class="btn btn-sm ${myResponse ? 'btn-outline' : 'btn-grass'} btn-full" 
             onclick="openResponseModal('${req.id}', '${escHtml((req.users?.first_name || '') + ' ' + (req.users?.last_name || ''))}', '${dateStr}')">
-            ${myResponse ? (myResponse.status === 'yes' ? '✅ Jij kunt!' : myResponse.status === 'maybe' ? '🤔 Misschien' : '❌ Niet') : '💬 Reageren'}
+            ${myResponse ? '✅ Al gereageerd' : '💬 Reageren'}
           </button>` : `
           <button class="btn btn-sm btn-outline btn-full" onclick="closeRequest('${req.id}')">Sluiten</button>`}
       </div>
@@ -1146,16 +1136,15 @@ function openResponseModal(requestId, requesterName, dateStr) {
 
 async function submitResponse() {
   const requestId = document.getElementById('response-request-id').value;
-  const status = document.getElementById('response-status').value;
+  const status = 'yes';
   const message = document.getElementById('response-message').value.trim();
   
   // Upsert response
-  const { error } = await sb.from('responses').upsert({
+  const { error } = await sb.from('responses').insert({
     request_id: requestId,
-    user_id: currentUser.id,
-    status,
-    message: message || null
-  }, { onConflict: 'request_id,user_id' });
+    responder_id: currentUser.id,
+    location_pref: message || null
+  });
   
   if (error) { showToast('❌ ' + error.message); return; }
   
