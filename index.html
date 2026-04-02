@@ -1183,10 +1183,10 @@ function showProfile() {
   document.getElementById('profile-info').innerHTML = `
     <div style="display:flex;align-items:center;gap:14px">
       <div class="avatar" style="width:56px;height:56px;font-size:1.2rem">
-        ${((userProfile?.first_name || 'U')).split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2)}
+        ${(userProfile?.first_name || 'U')[0].toUpperCase()}
       </div>
       <div>
-        <div style="font-weight:800;font-size:1.1rem">${escHtml(((userProfile?.first_name || '') + ' ' + (userProfile?.last_name || '') || '')}</div>
+        <div style="font-weight:800;font-size:1.1rem">${escHtml((userProfile?.first_name || '') + ' ' + (userProfile?.last_name || ''))}</div>
         <div class="text-muted">${escHtml(currentUser?.email || '')}</div>
       </div>
     </div>
