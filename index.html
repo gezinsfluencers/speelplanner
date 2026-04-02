@@ -751,17 +751,21 @@ async function afterLogin(user) {
 }
 
 async function ensureProfile(user) {
-  const name = user.user_metadata?.full_name || user.email.split('@')[0];
+  const fullName = user.user_metadata?.full_name || user.email.split('@')[0];
+  const parts = fullName.split(' ');
+  const firstName = parts[0] || '';
+  const lastName = parts.slice(1).join(' ') || '';
   const { data } = await sb.from('users').upsert(
-    { id: user.id, email: user.email, full_name: name },
+    { id: user.id, first_name: firstName, last_name: lastName },
     { onConflict: 'id' }
   ).select().single();
-  userProfile = data || { id: user.id, email: user.email, full_name: name };
+  userProfile = data || { id: user.id, first_name: firstName, last_name: lastName };
   // Set avatar
-  const initials = (userProfile.full_name || 'U').split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
+  const displayName = (userProfile.first_name || '') + ' ' + (userProfile.last_name || '');
+  const initials = displayName.trim().split(' ').map(w => w[0]).filter(Boolean).join('').toUpperCase().slice(0,2) || 'U';
   document.getElementById('user-avatar').textContent = initials;
   document.getElementById('hero-section').querySelector('h2').textContent = 
-    `Hallo, ${(userProfile.full_name || '').split(' ')[0]}! 👋`;
+    'Hallo, ' + (userProfile.first_name || 'daar') + '! 👋';
 }
 
 // ======================================
@@ -888,7 +892,7 @@ async function openGroupDetail(groupId) {
       <div class="child-card">
         <div class="child-avatar">👤</div>
         <div>
-          <div style="font-weight:800">${escHtml(m.users?.full_name || 'Onbekend')}</div>
+          <div style="font-weight:800">${escHtml((m.users?.first_name || '') + ' ' + (m.users?.last_name || '') || 'Onbekend')}</div>
           <div class="text-muted">${m.role === 'admin' ? '⭐ Beheerder' : 'Lid'}</div>
         </div>
       </div>
@@ -1063,7 +1067,7 @@ async function loadRequests() {
       <div class="card-header">
         <div class="card-icon ${isOwn ? 'sun' : 'sky'}">${isOwn ? '⭐' : '🧒'}</div>
         <div style="flex:1">
-          <div class="card-title">${escHtml(req.users?.full_name || 'Onbekend')}</div>
+          <div class="card-title">${escHtml((req.users?.first_name || '') + ' ' + (req.users?.last_name || '') || 'Onbekend')}</div>
           <div class="card-sub">${dateStr}</div>
         </div>
         <span class="status-badge status-${req.status || 'open'}">${req.status === 'matched' ? '🔵 Match!' : '🟢 Open'}</span>
@@ -1078,7 +1082,7 @@ async function loadRequests() {
           ${responses.slice(0,3).map(r => `
             <div class="text-muted" style="font-size:0.82rem;margin-bottom:3px">
               ${r.status === 'yes' ? '✅' : r.status === 'maybe' ? '🤔' : '❌'} 
-              <strong>${escHtml(r.users?.full_name || '')}</strong>
+              <strong>${escHtml((r.users?.first_name || '') + ' ' + (r.users?.last_name || ''))}</strong>
               ${r.message ? ': ' + escHtml(r.message) : ''}
             </div>
           `).join('')}
@@ -1086,7 +1090,7 @@ async function loadRequests() {
       <div class="response-actions">
         ${!isOwn ? `
           <button class="btn btn-sm ${myResponse ? 'btn-outline' : 'btn-grass'} btn-full" 
-            onclick="openResponseModal('${req.id}', '${escHtml(req.users?.full_name || '')}', '${dateStr}')">
+            onclick="openResponseModal('${req.id}', '${escHtml((req.users?.first_name || '') + ' ' + (req.users?.last_name || ''))}', '${dateStr}')">
             ${myResponse ? (myResponse.status === 'yes' ? '✅ Jij kunt!' : myResponse.status === 'maybe' ? '🤔 Misschien' : '❌ Niet') : '💬 Reageren'}
           </button>` : `
           <button class="btn btn-sm btn-outline btn-full" onclick="closeRequest('${req.id}')">Sluiten</button>`}
@@ -1179,10 +1183,10 @@ function showProfile() {
   document.getElementById('profile-info').innerHTML = `
     <div style="display:flex;align-items:center;gap:14px">
       <div class="avatar" style="width:56px;height:56px;font-size:1.2rem">
-        ${(userProfile?.full_name || 'U').split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2)}
+        ${((userProfile?.first_name || 'U')).split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2)}
       </div>
       <div>
-        <div style="font-weight:800;font-size:1.1rem">${escHtml(userProfile?.full_name || '')}</div>
+        <div style="font-weight:800;font-size:1.1rem">${escHtml(((userProfile?.first_name || '') + ' ' + (userProfile?.last_name || '') || '')}</div>
         <div class="text-muted">${escHtml(currentUser?.email || '')}</div>
       </div>
     </div>
